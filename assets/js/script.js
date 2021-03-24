@@ -3,11 +3,13 @@ var mainEl = document.getElementById('primary');
 var secondaryEl = document.getElementById('secondary');
 var highScore = document.getElementById('highscore');
 var startButton = document.getElementById('sbutton');
+var orderedList = document.getElementById('choiceList')
 var message = "Game Over!";
 var timeLeft;
 var timeInterval;
 var i;
 var test ="test content";   
+var html = "";
 
 var questions = [
   {
@@ -29,10 +31,12 @@ var questions = [
     answer: "quotes"
   },
   {   title: "A very useful tool used during development and debugging for printing   content to the debugger is ___________.",
-    choices: ["JavaScrip", "terminal / bash", "for loops", "console.log"],
+    choices: ["JavaScript", "terminal / bash", "for loops", "console.log"],
     answer: "console.log"
   }
 ];
+
+
 
 startButton.addEventListener("click", function () {
     console.log("Hello, I'm working!");
@@ -53,13 +57,14 @@ function startQuiz() {
 
         for (i = 1; i < 6; i++) {
             mainEl.textContent = " ";
-            secondaryEl.textContent = questions(i); // need to "inject" object values here
-         
-             
+            secondaryEl.textContent = questions[i].title;
+            orderedList.append(questions[i].choices[i]);
+
+            // orderedList.textContent = questions[i].choices;
+           // need to "inject" object values (choices) here 
+            
+            console.log("i = " + i);
     }       
-
-
-
 //    else {
 //         timerEl.textContent=''
 //         clearInterval(timeInterval);
