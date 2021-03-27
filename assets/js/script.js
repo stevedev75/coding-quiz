@@ -62,9 +62,7 @@ startButton.addEventListener("click", function () {
   startQuiz();
 });
 
-//where you determine if right or wrong
-function choiceClick(event) {
-  //var response = 
+function choiceClick(event) {{
   console.log("answer");
   var userAnswer = event.target;
   console.log(userAnswer);
@@ -73,19 +71,20 @@ function choiceClick(event) {
 
   if (userAnswerText === currentQuestion.answer) {
     console.log("correct");
+    
+    //alert "correct"?
   }
   else {
     console.log("incorrect");
-  }
-//increement questionIndex and call "nextQuestin()"
-
-  //document.getElementById("???????").;
-
-
-
-  // will need to add stuff to this function (perhaps "this" goes here??)
-  //if (){
-  // console.log(question.choices);
+    //alert "incorrect" and subtract 10 secs from clockyou're on
+  }}
+  
+  //remove Answer Buttons Here?
+  console.log("q iteration = " + questionIndex);
+  questionIndex++;
+  console.log("q iteration = " + questionIndex);
+  
+  nextquestion();
 }
 
 function startQuiz() {
@@ -98,22 +97,15 @@ function startQuiz() {
     if (timeLeft > 0) {
       timerEl.textContent = timeLeft;
       timeLeft--;
-    } // else (timeLeft == 0) {
+    } 
+    // else {
     // timerEl.style.display="none";
     // clearInterval(timeInterval);
     // } 
-  }, 1000);
-nextquestion()
-  
-  //    else {
-  //         timerEl.textContent=''
-  //         clearInterval(timeInterval);
-  //         displayMessage()   
-  //         }
-  //     }, 1000);
-
-
+     }, 1000);
+nextquestion();
 }
+
 function nextquestion () {
   var question = questions[questionIndex]
 
@@ -124,16 +116,15 @@ function nextquestion () {
     var choiceBtn = document.createElement("button");
 
     choiceBtn.innerHTML = question.choices[i];
+    
     choiceBtn.className = "button";
-
-    // Tutor said I'll need to add something here ("this" stuff??)  
 
     choiceBtn.onclick = choiceClick;
 
     orderedList.append(choiceBtn);
-
-    // iterating 4x bc they are 4 answer choices displayed
-    // I need to get an iteration counter for the questions.titles. for
-    // loop to work correction (I think).
+    
   }
+
+
 }
+
