@@ -23,7 +23,6 @@ var orderedList = document.getElementById('choiceList')
 var message = "Game Over!";
 var timeLeft;
 var timeInterval;
-var test = "test content";
 var questionIndex = 0;
 
 
@@ -64,8 +63,24 @@ startButton.addEventListener("click", function () {
 });
 
 //where you determine if right or wrong
-function choiceClick() {
-  console.log("Hello, 'choice click' is working!");
+function choiceClick(event) {
+  //var response = 
+  console.log("answer");
+  var userAnswer = event.target;
+  console.log(userAnswer);
+  var userAnswerText = userAnswer.textContent;
+  var currentQuestion = questions[questionIndex];
+
+  if (userAnswerText === currentQuestion.answer) {
+    console.log("correct");
+  }
+  else {
+    console.log("incorrect");
+  }
+//increement questionIndex and call "nextQuestin()"
+
+  //document.getElementById("???????").;
+
 
 
   // will need to add stuff to this function (perhaps "this" goes here??)
@@ -73,40 +88,23 @@ function choiceClick() {
   // console.log(question.choices);
 }
 
-
 function startQuiz() {
   timeLeft = 75;
+  startButton.style.display = "none";
   timeInterval = setInterval(function () {
     console.log(timeLeft)
+
 
     if (timeLeft > 0) {
       timerEl.textContent = timeLeft;
       timeLeft--;
-    }
+    } // else (timeLeft == 0) {
+    // timerEl.style.display="none";
+    // clearInterval(timeInterval);
+    // } 
   }, 1000);
-
-  var question = questions[questionIndex]
-
-  for (var i = 0; i < question.choices.length; i++) {
-    mainEl.textContent = " ";
-    secondaryEl.textContent = question.title;
-
-    var choiceBtn = document.createElement("button");
-    choiceBtn.innerHTML = question.choices[i];
-    choiceBtn.className = "button";
-    // Tutor said I'll need to add something here ("this" stuff??)  
-
-    choiceBtn.onclick = choiceClick;
- 
-
-    orderedList.append(choiceBtn);
-
-    console.log("i = " + i);
-
-    // iterating 4x bc they are 4 answer choices displayed
-    // I need to get an iteration counter for the questions.titles. for
-    // loop to work correction (I think).
-  }
+nextquestion()
+  
   //    else {
   //         timerEl.textContent=''
   //         clearInterval(timeInterval);
@@ -115,4 +113,27 @@ function startQuiz() {
   //     }, 1000);
 
 
+}
+function nextquestion () {
+  var question = questions[questionIndex]
+
+  for (var i = 0; i < question.choices.length; i++) {
+    mainEl.textContent = " ";
+    secondaryEl.textContent = question.title;
+
+    var choiceBtn = document.createElement("button");
+
+    choiceBtn.innerHTML = question.choices[i];
+    choiceBtn.className = "button";
+
+    // Tutor said I'll need to add something here ("this" stuff??)  
+
+    choiceBtn.onclick = choiceClick;
+
+    orderedList.append(choiceBtn);
+
+    // iterating 4x bc they are 4 answer choices displayed
+    // I need to get an iteration counter for the questions.titles. for
+    // loop to work correction (I think).
+  }
 }

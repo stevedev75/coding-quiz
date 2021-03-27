@@ -1,24 +1,22 @@
-/* window.onload = function (){
-    */
-   
-
 * {
-    box-sizing: border-box;
-}
-
-
-.aside {
-    text-align: right;
-}
-
-
-#main {
-    margin-bottom: 20px;
-    font-size: 35px;
-    width:auto;
-    height: 25px;
-    margin: auto;
-    text-align: center;
-}
-
-}
+        box-sizing: border-box;
+    }
+    
+    
+    .aside {
+        text-align: right;
+    }
+    
+    
+    #main {
+        margin-bottom: 20px;
+        font-size: 35px;
+        width:auto;
+        height: 25px;
+        margin: auto;
+        text-align: center;
+    }
+    
+    
+ 
+    
