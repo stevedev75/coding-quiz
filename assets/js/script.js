@@ -5,14 +5,13 @@
 // 4 if answer is wrong, display "wrong", deduct 10 seconds from timer, 
 //   and move to the next question
 // 5 repeat steps 2 through 4 until finished all five questions
+// 
 // 6 when quiz is complete:
 // a. display "game over" 
 // b. stop the clock,
 // c. use the remaining time as "high score", 
 // d. prompt for/collect users initials
 // e. post initials with high score
-
-
 
 var timerEl = document.getElementById('timer');
 var mainEl = document.getElementById('primary');
@@ -24,8 +23,6 @@ var message = "Game Over!";
 var timeLeft;
 var timeInterval;
 var questionIndex = 0;
-
-
 
 var questions = [
   {
@@ -56,34 +53,34 @@ var questions = [
 ];
 
 
-
 startButton.addEventListener("click", function () {
   console.log("Hello, 'start button' working!");
   startQuiz();
 });
 
-function choiceClick(event) {{
-  console.log("answer");
-  var userAnswer = event.target;
-  console.log(userAnswer);
-  var userAnswerText = userAnswer.textContent;
-  var currentQuestion = questions[questionIndex];
+function choiceClick(event) {
+  {
+    console.log("answer");
+    var userAnswer = event.target;
+    console.log(userAnswer);
+    var userAnswerText = userAnswer.textContent;
+    var currentQuestion = questions[questionIndex];
 
-  if (userAnswerText === currentQuestion.answer) {
-    console.log("correct");
-    
-    //alert "correct"?
+    if (userAnswerText === currentQuestion.answer) {
+      console.log("correct")
+      var rOrW = document.querySelector("#rightOrWrong");
+      rOrW.innerHTML = "Correct!";
+    }
+    else {
+      console.log("incorrect")
+      timeLeft = timeLeft - 10;
+      var rOrW = document.querySelector("#rightOrWrong");
+      rOrW.innerHTML = "Incorrect!";
+    }
   }
-  else {
-    console.log("incorrect");
-    //alert "incorrect" and subtract 10 secs from clockyou're on
-  }}
-  
-  //remove Answer Buttons Here?
   console.log("q iteration = " + questionIndex);
   questionIndex++;
   console.log("q iteration = " + questionIndex);
-  
   nextquestion();
 }
 
@@ -97,34 +94,37 @@ function startQuiz() {
     if (timeLeft > 0) {
       timerEl.textContent = timeLeft;
       timeLeft--;
-    } 
+    }
     // else {
     // timerEl.style.display="none";
     // clearInterval(timeInterval);
     // } 
-     }, 1000);
-nextquestion();
+
+  }, 1000);
+  nextquestion();
 }
 
-function nextquestion () {
+function nextquestion() {
   var question = questions[questionIndex]
+  secondaryEl.innerHTML = " ";
+  orderedList.innerHTML = " ";
+
 
   for (var i = 0; i < question.choices.length; i++) {
+
     mainEl.textContent = " ";
     secondaryEl.textContent = question.title;
 
     var choiceBtn = document.createElement("button");
 
     choiceBtn.innerHTML = question.choices[i];
-    
+
     choiceBtn.className = "button";
 
     choiceBtn.onclick = choiceClick;
 
     orderedList.append(choiceBtn);
-    
+
   }
-
-
 }
 
